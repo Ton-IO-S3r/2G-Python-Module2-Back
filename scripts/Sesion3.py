@@ -54,6 +54,7 @@ y - x
 
 
 x ^ y
+(x-y)|(y-x)
 
 x
 
@@ -65,7 +66,7 @@ print(x, x_sub)
 
 x_sub.issubset(x)
 
-x.issubset(x)
+x.issubset(x)   
 
 x < x
 
@@ -104,7 +105,7 @@ y
 y.remove(100)
 y
 
-y.discard(12)
+y.discard(8)
 y
 
 
@@ -113,17 +114,36 @@ y
 l_nombres2 = []
 l_horas = []
 ejemplo1 = {
-   '':{
-       'Horas de sueño': ,
-       'Minutos al trabajo': 
+   'Arturo':{
+       'Horas de suenio': 4,
+       'Minutos al trabajo': 20 
    }
 }
+suma = lambda x, y: x + y
+suma(12, 11)
+
 horas_suenio_dict = {
-  
+    "Arturo": {"suenio": 6},
+    'Carlos': 8,
+    'Tonio': [8, 6, 5],
+    'Ivan': {
+        "75%":8,
+        "25%": 6
+    },
+    "Yair": {
+        .75: 8, 
+        .25: 7
+    },
+    "funcion": suma
 }
+horas_suenio_dict["funcion"](12, 3)
+
  
 for llave, valor in horas_suenio_dict.items():
-   print(f'{llave} duerme {valor}')
+    print(llave, valor)
+    # print(f"{llave}  {str(valor)}")
+
+
 # Lo anterior es equivalente a las dos líneas anteriores
 for nombre_alumno, horas_suenio in horas_suenio_dict.items():
    print(f'{nombre_alumno} duerme {horas_suenio}')
@@ -131,32 +151,63 @@ for nombre_alumno, horas_suenio in horas_suenio_dict.items():
 list(horas_suenio_dict.keys()) #Si se necesita tener las llaves como listas
  
 for llave in horas_suenio_dict.keys():
-   print(f'{llave} duerme {horas_suenio_dict[llave]}')
+   print('{llave} duerme {horas_suenio_dict}'.format(llave = llave, horas_suenio_dict = horas_suenio_dict[llave]))
  
 suma_horas = 0
 for valor in horas_suenio_dict.values():
-   print(valor)
-   suma_horas += valor
+    print(valor)
+    if isinstance(valor, float) or isinstance(valor, int):
+        print("Estoy sumando")
+        suma_horas += valor
+
+suma_horas = 0
+for valor in horas_suenio_dict.values():
+    print(valor)
+    if str(type(valor)) == "<type 'float'>" or str(type(valor)) == "<type 'int'>":
+        print("Estoy sumando")
+        suma_horas += valor
  
-print(f'El promedio de horas de sueño de los alumnos es: {suma_horas / len(horas_suenio_dict)}')
+horas_suenio_dict = {
+    "Arturo": 5,
+    'Carlos': 8,
+    'Tonio': 7,
+    'Ivan': 6, 
+    "Yair": 4,
+    "funcion": suma
+}
+
+suma_horas = 0
+n = 0
+for valor in horas_suenio_dict.values():
+    print(valor)
+    if str(type(valor)) == "<type 'float'>" or str(type(valor)) == "<type 'int'>":
+        print("Estoy sumando")
+        suma_horas += valor
+        n += 1
+
+print("El promedio de horas de sueño de los alumnos es: "+str( suma_horas / n))
  
  
 ## .clear deja vacío el diccionario
  
 ## .copy Crea una copia nueva
 ##.fromkeys
-horas_suenio_dict_2 = dict.fromkeys([], 8)
+horas_suenio_dict_2 = dict.fromkeys(["Rosy", "Osmar"], 6)
 print(horas_suenio_dict_2)
+
+horas_suenio_dict["Arturo"]
+# horas_suenio_dict["Osmar"] Error KeyError:  'Osmar'
+
  
 ##horas_suenio_dict_2["Ale Paez"] Error KeyError: 'Ale Paez'
  
 ## Consultas
 # .get
-horas_suenio_dict_2.get("")
+horas_suenio_dict.get("Arturo")
 
- 
+horas_suenio_dict_2
 # .pop
-horas_suenio_dict_2.pop("")
+horas_suenio_dict_2.pop("Osmar")
 8
 print(horas_suenio_dict_2)
  
@@ -166,17 +217,22 @@ print(horas_suenio_dict_2)
 horas_suenio_dict_2.setdefault("Arturo",7) #Agrega Arturo con 7 horas de sueño
 #Parecido al get
 horas_suenio_dict_2.setdefault("Arturo")
-horas_suenio_dict_2.setdefault("", None) # al igual que el get no marca error y no devuelve nada
- 
+horas_suenio_dict_2
+horas_suenio_dict_2.setdefault("Ferdinand") # al igual que el get no marca error y no devuelve nada
+horas_suenio_dict_2["Ferdinand"] = 6
+
 #.update RECIBE UN DICCIONARIO
-horas_suenio_dict_2.update({"": horas_suenio_dict[""]})
+horas_suenio_dict_2.update({"Tonio": horas_suenio_dict["Tonio"]})
 print(horas_suenio_dict_2)
-horas_suenio_dict_2[""] = 10
-horas_suenio_dict_2[""] = 10 
-horas_suenio_dict_2.get("", "No se encontró el nombre")
+horas_suenio_dict_2["Ivan"] = 10
+horas_suenio_dict_2["Ivan"] = 5 
+horas_suenio_dict_2.update({"Ivan":6})
+horas_suenio_dict_2
+
+horas_suenio_dict_2.get("Alexa", "No se encontró el nombre")
  
 # Validar que la llave existe
-if "" in horas_suenio_dict_2.keys():
+if "Alexa" in horas_suenio_dict_2.keys():
    print("Sabemos cuanto duerme ")
 else:
    print("No sabemos cuanto duerme ")
