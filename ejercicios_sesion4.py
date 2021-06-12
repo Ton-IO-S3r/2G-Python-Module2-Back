@@ -19,3 +19,11 @@ alturas_reales = [1.65,1.65,1.70,1.75, 1.64, 1.65, 1.72, 1.67,1.65]
 acertados = [True if abs(alturas[i] - alturas_reales[i]) <= 0.03 else False for i in  range(len(alturas)) ]
 print(acertados)
 print(f'Adiviné la altura de mis compañeros en {acertados.count(True)} ocasiones')
+
+# Ejercicio 5
+
+todos = {'Aaron', 'Carlos', 'Ferdinand', 'Rosa', 'Ivan', 'Arturo', 'Osmar', 'Antonio', 'Yair'}
+ingenieros = {"Antonio", "Carlos", "Ivan", "Yair", "Osmar"}
+chilangos = {"Arturo", "Aaron", "Ivan", }
+ingenieros_chilangos = chilangos & ingenieros 
+ingenieros_no_chilangos = todos - ingenieros_chilangos
