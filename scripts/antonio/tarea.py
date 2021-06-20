@@ -13,6 +13,9 @@ class Mercancia():
       self.nombre = nombre
       self.descuento = descuento
       self.stock = stock
+      if self.descuento > 0:
+        self.precio = round(self.precio*(1-self.descuento),2)
+        print(f'Se aplicó el {self.descuento*100}% de descuento')
   def elegirProducto(self, cantidad) -> int:
     if cantidad <= self.stock:
       self.stock -= cantidad
@@ -21,6 +24,10 @@ class Mercancia():
     return self.stock
   def getStock(self):
     print(f'Stock actual en {self.nombre}: {self.stock} artículos')
+  def add2Stock(self,cantidad=1):
+    self.stock += cantidad
+    print(f'Se agregaron {cantidad} artículos')
+    self.getStock()
 
 
 ### Crea una subclase de Mercancia que se llame botanas
@@ -50,9 +57,9 @@ class Tarjeta():
     elif producto.stock < cantidad:
       print('No se pudo realizar la transaccion: No hay productos disponibles')
     else:
-      self.saldo -= producto.precio
+      self.saldo -= (producto.precio*cantidad)
       producto.elegirProducto(cantidad)
-    return self.saldo
+      print('Tu compra se realizó con éxito!!')
   def deposito(self,monto):
     self.saldo += monto
     print(f'Se dpositaron $ {monto} a tu cuenta')
@@ -65,7 +72,7 @@ miTarjeta = Tarjeta('Antonio Servin Mojica', 1000, '30/11/1985')
 ### 2 Crear una mercancia con precio de $12, nombre fritos, stock, que es el número de unidades en la tienda de 20, y 0% de descuento
 fritos = Mercancia(12.00, 'fritos', 0, 20)
 ### 2 Crear una botana con precio de $12, nombre maruchan, stock, que es el número de unidades en la tienda de 20, y 0% de descuento,
-maruchan = Botana(12.00, 'maruchan', 0, 20, 'chipotle', 'Producto alto en calorías')
+maruchan = Botana(25.00, 'maruchan', 0.10, 20, 'chipotle', 'Producto alto en calorías')
 #calorías altas y sabor chipotle
 ### Realiza las siguientes compras:
 # 1 unos fritos
@@ -83,7 +90,7 @@ miTarjeta.compra(maruchan)
 # 1 maruchan
 miTarjeta.compra(maruchan)
 # 1 maruchan
-miTarjeta.compra(maruchan)
+miTarjeta.compra(maruchan,14)
 #Imprime el saldo actual de la tarjeta y el stock de botana y mercancia
 miTarjeta.getSaldo()
 fritos.getStock()
